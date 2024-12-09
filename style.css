@@ -1,77 +1,104 @@
 body, html {
   margin: 0;
   padding: 0;
+  height: 100%;
   box-sizing: border-box;
-  font-family: 'Times New Roman', Times, serif;
-  overflow-x: hidden;
 }
 
 .container {
   display: grid;
   grid-template-areas:
-      "header"
-      "navigation"
-      "mainleft"
-      "top"
-      "main"
-      "footer";
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-}
-
-header, footer, nav, .main-left, .top-content, .main-content {
-  padding: 10px;
-  text-align: center;
+      "header header header"
+      "mainleft top side"
+      "mainleft main side"
+      "footer footer footer";
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: auto auto 1fr auto;
+  height: 100vh;
 }
 
 .header {
   grid-area: header;
   background-color: lightblue;
-}
-
-.navigation {
-  grid-area: navigation;
-  background-color: lightgreen;
-}
-
-.main-left {
-  grid-area: mainleft;
-  background-color: peachpuff;
-}
-
-.top-content {
-  grid-area: top;
-  background-color: mistyrose;
-}
-
-.main-content {
-  grid-area: main;
-  background-color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .footer {
   grid-area: footer;
   background-color: lightblue;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.highlighted {
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.main-left {
+  grid-area: mainleft;
+  background-color: peachpuff;
+  padding: 20px;
+}
+
+.top-content {
+  grid-area: top;
+  background-color: mistyrose;
+  padding: 20px;
+}
+
+.main-content {
+  grid-area: main;
+  background-color: white;
+  padding: 20px;
+}
+
+.navigation {
+  grid-area: side;
+  background-color: lightgreen;
+  padding: 20px;
 }
 
 @media (max-width: 768px) {
+  .container {
+      grid-template-areas:
+          "header"
+          "mainleft"
+          "top"
+          "main"
+          "side"
+          "footer";
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+  }
+
+  .header, .footer {
+      flex-direction: column;
+      text-align: center;
+  }
+
   .navigation ul {
+      list-style: none;
+      padding: 0;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      align-items: center;
+  }
+
+  .navigation ul li {
+      margin-bottom: 10px;
   }
 
   .navigation ul li a {
       text-decoration: none;
+      font-size: 16px;
       color: black;
-      font-size: 18px;
-  }
-
-  header h1 {
-      font-size: 22px;
-  }
-
-  footer h2 {
-      font-size: 18px;
   }
 }
